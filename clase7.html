@@ -57,7 +57,8 @@
             color: var(--black);
             text-decoration: none;
             margin-bottom: 20px;
-            display: inline-block;
+            display: inline-block; 
+            /* El inline-block se aplica porque a los elementos inline no se les puede aplicar margin */
         }
     </style>
 </head>
@@ -65,13 +66,13 @@
     <div class="desktop-menu">
         <ul>
             <li>
-                <a href="title">My orders</a>
+                <a href="/" class="title">My orders</a>
             </li>
             <li>
-                <a href="">My accounts</a>
+                <a href="/">My accounts</a>
             </li>
             <li>
-                <a href="">Sign out</a>
+                <a href="/">Sign out</a>
             </li>
         </ul>
     </div>       
