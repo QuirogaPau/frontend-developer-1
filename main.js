@@ -5,5 +5,6 @@ menuNav.addEventListener('click', toggleDesktopMenu);
 function toggleDesktopMenu() {
      desktopMenu.classList.toggle('inactive');
      console.log('click')
-    
 }
+
+// objeto classList, que permite añadir, eliminar, alternar y consultar clases CSS cómodamente: En donde va a indicar que si esta inactivo si active y viceversa 
