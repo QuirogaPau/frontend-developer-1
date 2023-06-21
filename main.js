@@ -1,14 +1,17 @@
 const menuNav = document.querySelector('.navbar-email');
 const desktopMenu = document.querySelector('.desktop-menu');
 const menuHamIcon = document.querySelector('.menu');
-const menuCartIcon = document.querySelector('.navbar-shopping-cart')
+const menuCartIcon = document.querySelector('.navbar-shopping-cart');
+const productDetailIcon = document.querySelector('.product-detail-close')
 const mobileMenu = document.querySelector('.mobile-menu');
 const aside = document.querySelector('.product-detail');
 const cardsContainer = document.querySelector('.cards-container');
+const productDetailDescription = document.querySelector('.product-description');
 
 menuNav.addEventListener('click', toggleDesktopMenu);
 menuHamIcon.addEventListener('click', toggleMobileMenu);
 menuCartIcon.addEventListener('click', toggleCartAside);
+productDetailIcon.addEventListener('click', closeProductDetailAside);
 
 function toggleDesktopMenu() {
      const isAsideClosed = aside.classList.contains('inactive');
@@ -27,13 +30,15 @@ function toggleMobileMenu() {
      if(!isAsideClosed) {
           aside.classList.add('inactive');   
      }
-
+     closeProductDetailAside();
+     
      mobileMenu.classList.toggle('inactive');
 }
 
 function toggleCartAside() {
      const isMobileMenuClosed = mobileMenu.classList.contains('inactive');
-    const isDesktopClosed = desktopMenu.classList.contains('inactive');
+     const isDesktopClosed = desktopMenu.classList.contains('inactive');
+
      if (!isMobileMenuClosed) {
           // Abrir el aside
           mobileMenu.classList.toggle('inactive');
@@ -41,9 +46,24 @@ function toggleCartAside() {
           desktopMenu.classList.toggle('inactive');
      }
 
+     const isProductDetailClosed = productDetailDescription.classList.contains('inactive');
+     if (!isProductDetailClosed) {
+          // Cerrar el aside 
+          productDetailDescription.classList.add('inactive');
+     }
      aside.classList.toggle('inactive');
 }
+// Utiliza remove() porque se quiere quitar la clase inactive
+function openProductDetailAside (){
+     aside.classList.add('inactive');
+     productDetailDescription.classList.remove('inactive')
+}
 
+function closeProductDetailAside (){
+     productDetailDescription.classList.add('inactive')
+}
+
+const descriptionList = [];
 // objeto classList, que permite añadir, eliminar, alternar y consultar clases CSS cómodamente: En donde va a indicar que si esta inactivo si active y viceversa 
 
 const productList = [];
@@ -152,6 +172,7 @@ function renderProducts(arr) {
       
    const productImg = document.createElement('img');
    productImg.setAttribute('src', product.image);
+   productImg.addEventListener('click', openProductDetailAside);
 
    const productInfo =  document.createElement('div');
    productInfo.classList.add('product-info');
